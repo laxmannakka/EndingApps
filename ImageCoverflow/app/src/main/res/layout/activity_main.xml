@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.bridgelabz.imagecoverflow xmlns:imageCoverFlow="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/coverflow"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    imageCoverFlow:enableReflection="true"
+    imageCoverFlow:reflectionGap="10dp"
+    imageCoverFlow:reflectionHeight="30%"
+    imageCoverFlow:reflectionShaderEnable="true"
+    imageCoverFlow:visibleImage="5" />
