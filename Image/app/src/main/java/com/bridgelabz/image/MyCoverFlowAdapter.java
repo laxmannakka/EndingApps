@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -14,16 +17,38 @@ import java.util.ArrayList;
 
 public class MyCoverFlowAdapter extends CoverFlowAdapter  {
     private boolean dataChanged;
+    LayoutInflater inflater;
 
+    Context context;
     public MyCoverFlowAdapter(Context context) {
+        this.context=context;
+        inflater = LayoutInflater.from(context);
 
-        image.add( BitmapFactory.decodeResource(context.getResources(), R.drawable.background_img));
-        image.add(BitmapFactory.decodeResource(context.getResources(), R.drawable.images));
-        image.add (BitmapFactory.decodeResource(context.getResources(),R.drawable.background));
-        image.add(BitmapFactory.decodeResource(context.getResources(),R.drawable.chat_background));
-        image.add(BitmapFactory.decodeResource(context.getResources(),R.drawable.delhi));
-        image.add(BitmapFactory.decodeResource(context.getResources(),R.drawable.abcd));
+        View view = inflater.inflate(R.layout.custom_layout,null);
 
+        image.add(getScreenViewBitmap(view,R.drawable.images));
+        image.add(getScreenViewBitmap(view,R.drawable.background));
+        image.add(getScreenViewBitmap(view,R.drawable.chat_background));
+        image.add(getScreenViewBitmap(view,R.drawable.delhi));
+        image.add(getScreenViewBitmap(view,R.drawable.abcd));
+
+    }
+
+    public  Bitmap getScreenViewBitmap(final View view,int drawable) {
+        view.setDrawingCacheEnabled(true);
+
+        view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+
+        ImageView imageView=(ImageView)view.findViewById(R.id.imageView);
+
+        imageView.setImageDrawable(context.getResources().getDrawable(drawable));
+        view.buildDrawingCache(true);
+        Bitmap b = Bitmap.createBitmap(view.getDrawingCache());
+        view.setDrawingCacheEnabled(false); // clear drawing cache
+
+        return b;
     }
 
     public void changeBitmap() {
