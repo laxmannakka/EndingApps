@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Twitter Configurations -->
+        <string name="twitter_callback">http://sharingAnappthoughthetwitter.android.app</string>
+        <string name="twitter_consumer_key">yOWMdySFmfldxJTy45CcjEJ8x</string>
+        <string name="twitter_consumer_secret">EtA92D3tUcC0VOBhlB1mFUCve1IaFUdZliKaNgKptO0oHiN8sE</string>
+        <string name="twitter_oauth_verifier">oauth_verifier</string>
+        <!-- End Configurations -->
+    </style>
+
+</resources>

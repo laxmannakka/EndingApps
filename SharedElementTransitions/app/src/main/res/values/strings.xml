@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SharedElementTransitions</string>
+    <string name="title_activity_starting">StartingActivity</string>
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NewIPL</string>
+    <string name="title_activity_player_deatails">PlayerDeatailsActivity</string>
+</resources>

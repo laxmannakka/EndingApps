@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Fundo HR</string>
+    <string name="buttontext">Sign in</string>
+    <string name="remember"> Remember me</string>
+    <string name="spinner_title">data</string>
+    <string name="country_prompt">Choose a country</string>
+
+</resources>

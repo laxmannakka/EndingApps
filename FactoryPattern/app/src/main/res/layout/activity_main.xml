@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bridgelabz.factorypattern.MainActivity">
+
+  <Button
+      android:id="@+id/button1"
+      android:text="pooplde"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+<Button
+    android:id="@+id/button2"
+    android:text="rotter"
+    android:layout_below="@+id/button1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+    <Button
+        android:layout_below="@+id/button2"
+        android:id="@+id/button3"
+        android:text="siberlully"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EffectsInAndroid</string>
+    <string name="plcehoder">placeholder</string>
+    <string name="menu_item">search</string>
+    <string name="text_content">hello Every one</string>
+    <string name="appbar_scrolling_view_behavior">appbar_scrolling_view_behavior</string>
+</resources>

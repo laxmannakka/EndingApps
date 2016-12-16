@@ -20,17 +20,24 @@ public class Categorymodel {
     String parent_category_id;
     String parent_category_name;
     String image_path;
-    String sub_category_id;
     Bitmap image;
+    String url;
 
+    public String getUrl() {
+        return url;
+    }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-    public Categorymodel(String category_name, String category_id, String parent_category_id, String parent_category_name, Bitmap image) {
+    public Categorymodel(String category_name, String category_id, String parent_category_id, String parent_category_name, String url) {
         this.category_name = category_name;
         this.category_id = category_id;
         this.parent_category_id = parent_category_id;
         this.parent_category_name = parent_category_name;
-        this.image = image;
+        this. image_path= url;
+
     }
 
     public String getCategory_name() {

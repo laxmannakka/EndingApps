@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/one"
+        android:icon="@drawable/llll"
+        android:title="services"
+        app:showAsAction="never"
+         />
+
+    <item
+        android:id="@+id/two"
+        android:icon="@drawable/llll"
+        android:title="my Lists"
+        app:showAsAction="never"
+        />
+    <!--
+    <item
+        android:id="@+id/three"
+        android:icon="@drawable/llll"
+        android:title="my Orders"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/four"
+        android:icon="@drawable/llll"
+        android:title="my notification"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/five"
+        android:icon="@drawable/llll"
+        android:title="settings"
+        app:showAsAction="never" />-->
+
+</menu>

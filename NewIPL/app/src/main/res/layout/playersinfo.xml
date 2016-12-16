@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/relativelayout1"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="2dp"
+        android:background="#00FFFF"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.00">
+
+        <TextView
+            android:id="@+id/nametextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="Name :" />
+
+        <TextView
+            android:id="@+id/setnameTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/nametextview"
+            android:layout_weight="1"
+            android:hint="name is" />
+
+        <TextView
+            android:id="@+id/playrole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nametextview"
+            android:layout_marginTop="5dp"
+            android:text="Role:" />
+
+        <TextView
+            android:id="@+id/setplayrole"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/playrole"
+            android:layout_toEndOf="@+id/nametextview"
+            android:layout_toRightOf="@+id/nametextview"
+            android:hint="Role is" />
+
+        <TextView
+            android:id="@+id/batstyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/playrole"
+            android:layout_marginTop="5dp"
+            android:text="Bat-Style  :" />
+
+        <TextView
+            android:id="@+id/setbattingstyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/setplayrole"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/batstyle"
+            android:hint="batting style" />
+
+        <TextView
+            android:id="@+id/bolingstyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/batstyle"
+            android:layout_marginTop="5dp"
+            android:text="Bowl-Style  :" />
+
+        <TextView
+            android:id="@+id/setbowl"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/setbattingstyle"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/bolingstyle"
+            android:hint="bowlstyle is" />
+
+        <TextView
+            android:id="@+id/nationality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bolingstyle"
+            android:layout_marginTop="5dp"
+            android:text="Nationality  :" />
+
+        <TextView
+            android:id="@+id/setnatonality"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/setbowl"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/bolingstyle"
+            android:hint="nationality" />
+
+        <TextView
+            android:id="@+id/dob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nationality"
+            android:layout_marginTop="5dp"
+            android:text="DataofBirth  :" />
+
+        <TextView
+            android:id="@+id/setdob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/setnatonality"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/dob"
+            android:hint="dob is" />
+
+
+        <ImageView
+            android:id="@+id/imageview1"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="11dp"
+            android:layout_marginRight="11dp"
+            android:src="@mipmap/ic_launcher" />
+    </RelativeLayout>
+
+    <View
+        android:background="#425652"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"/>
+
+</LinearLayout>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="380dp"
+    android:layout_margin="20dp"
+    android:id="@+id/reeee"
+    android:background="@drawable/rextangleshapee">
+
+    <LinearLayout
+        android:id="@+id/linearlayout1"
+        android:weightSum="5"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="0.32"
+            android:id="@+id/date"
+            android:text="Date   :"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="2.82"
+            android:id="@+id/setdate"
+            android:text="10/10/2016"
+            android:textSize="20dp"
+            android:background="@drawable/rextangleshapee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@drawable/daterange"
+            android:id="@+id/calender"
+            android:layout_width="41dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        android:id="@+id/linearlayout2"
+        android:orientation="horizontal"
+        android:layout_below="@+id/linearlayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="1.2"
+            android:id="@+id/text"
+            android:text="intime"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="0.8"
+            android:id="@+id/text2"
+            android:text="select"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        android:id="@+id/linearlayout3"
+        android:orientation="horizontal"
+        android:layout_below="@+id/linearlayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="1.2"
+            android:id="@+id/outtext"
+            android:text="outtime"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="0.8"
+            android:id="@+id/outtext1"
+            android:text="select"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/noofhours"
+       android:layout_below="@+id/linearlayout3"
+        android:text="No.of.hours :"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/totaltime"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/linearlayout3"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/noofhours"
+        android:hint="Total time"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:id="@+id/relative2"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/noofhours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/working"
+            android:text="Working :"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:layout_toRightOf="@+id/working"
+            android:id="@+id/spinner"
+            android:prompt="@string/country_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:visibility="invisible"
+        android:id="@+id/relative3"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/relative2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:layout_alignParentLeft="true"
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_toRightOf="@+id/checkbox"
+            android:id="@+id/reason"
+            android:text="Reason for absence"
+            android:textSize="20dp"
+            android:textColor="#070d1d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/checkbox"/>
+    </RelativeLayout>
+
+    <EditText
+        android:visibility="invisible"
+        android:id="@+id/edittext"
+        android:layout_below="@+id/relative3"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:text="null"
+        android:background="@drawable/rextangleshapee"
+        android:layout_height="50dp" />
+    <Button
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/edittext"
+        android:id="@+id/submit"
+        android:text="submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_marginRight="10dp"
+        android:id="@+id/cancel"
+        android:text="cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittext"
+        android:layout_toStartOf="@+id/submit"
+        android:layout_marginEnd="10dp" />
+
+
+
+</RelativeLayout>

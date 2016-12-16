@@ -1,21 +1,27 @@
 package com.bridgelabz.appystore.controller;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
-import com.bridgelabz.appystore.interfaces.Asyntask;
-import com.bridgelabz.appystore.interfaces.Dataready;
+import com.bridgelabz.appystore.R;
+import com.bridgelabz.appystore.interfaces.CategoryAsyntask;
+import com.bridgelabz.appystore.interfaces.CategoryDataDownloadCompleted;
 import com.bridgelabz.appystore.model.Categorymodel;
-import com.bridgelabz.appystore.model.ContentListmodel;
+import com.bridgelabz.appystore.utility.CategoryDataBaseHandler;
+import com.bridgelabz.appystore.utility.DataBaseHandler;
 import com.bridgelabz.appystore.viewmodel.CategoryViewmodel;
-import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Created by bridgeit007 on 19/8/16.
@@ -26,22 +32,32 @@ import java.util.Locale;
 
 public class CategoryController {
 
-
+    Context mContext;
+    SharedPreferences sharedPreferences;
     // Initilizing the arraylist this list holds the category model data
-   public  final ArrayList<Categorymodel> mListofCategory = new ArrayList<>();
-    ArrayList<ContentListmodel> mContentlist = new ArrayList<>();
+    ArrayList<Categorymodel> mListofCategory = new ArrayList<>();
+    ArrayList<CategoryViewmodel> viewmodellist = new ArrayList<>();
+    CategoryDataBaseHandler db = new CategoryDataBaseHandler(mContext);
+
+    public CategoryController(Context context) {
+        this.mContext = context.getApplicationContext();
+        db = new CategoryDataBaseHandler(mContext);
+        String ll = "";
+    }
+
+    public CategoryController() {
+    }
 
 
-    public void loaddataFromserver(final Asyntask asyntask) {
+    public void loadDataFromServer(final CategoryAsyntask categoryAsyntask) {
         //rest url getting the data from url
-        String url = "http://beta.appystore.in/appy_app/appyApi_handler.php?method=getCategoryList&content_type=videos&limit_start=0&age=1.5&incl_age=5";
-
+        String url = mContext.getResources().getString(R.string.categoryvideoslink);
         // creating the object of Restservice class
         RestService obj = new RestService() {
 
             @Override
-            protected void onPostExecute(ArrayList arrayList) {
-                asyntask.getdatafromserver(arrayList);
+            protected void onPostExecute(ArrayList<Categorymodel> arrayList) {
+                categoryAsyntask.loadedCategoryDataFromServer(arrayList);
             }
         };
 
@@ -50,37 +66,66 @@ public class CategoryController {
         obj.execute(url);
     }
 
-
     // function for Populate viewmodel
+    public void populateViewmodel(final CategoryDataDownloadCompleted dataready) {
 
-    public ArrayList<CategoryViewmodel> populateViewmodel(final Dataready dataready) {
+        viewmodellist = db.getAllStoredData();
 
-        // calling the rest call
-        loaddataFromserver(new Asyntask() {
-            @Override
-            public void getdatafromserver(ArrayList<Categorymodel> categorylist) {
-
-
-                ArrayList<CategoryViewmodel> viewmodellist = new ArrayList<>();
-                for (int i = 0; i < categorylist.size(); i++) {
-                    Categorymodel model = categorylist.get(i);
-                    String title = model.getCategory_name();
-                    Bitmap image = model.getImage();
-                    String pid =model.getParent_category_id();
-                    String cid = model.getCategory_id();
-                    String url =model.getImage_path();
-                    viewmodellist.add(new CategoryViewmodel(title, image,pid,cid,url));
+        if (viewmodellist.size() == 0) {
+            // calling the rest call
+            loadDataFromServer(new CategoryAsyntask() {
+                @Override
+                public void loadedCategoryDataFromServer(ArrayList<Categorymodel> categorylist) {
+                    for (int i = 0; i < categorylist.size(); i++) {
+                        Categorymodel model = categorylist.get(i);
+                        String title = model.getCategory_name();
+                        String pid = model.getParent_category_id();
+                        String cid = model.getCategory_id();
+                        String url = model.getImage_path();
+                        //     viewmodellist.add(new CategoryViewmodel(title, pid, cid, url));
+                        db.addStoreDataToDataBase(new CategoryViewmodel(title, pid, cid, url));
+                    }
+                    viewmodellist = db.getAllStoredData();
+                    dataready.receivedCategoryViewModelData(viewmodellist);
                 }
-                dataready.getviewmodeldata(viewmodellist);
-            }
+            });
 
-        });
-        return null;
+            return;
+        }
+        dataready.receivedCategoryViewModelData(viewmodellist);
+
+        boolean b = isOnline(mContext);
+        if (b) {
+            loadDataFromServer(new CategoryAsyntask() {
+                @Override
+                public void loadedCategoryDataFromServer(ArrayList<Categorymodel> catogorymodel) {
+                    if (viewmodellist.size() == catogorymodel.size()) {
+                    } else {
+                        for (int i = 0; i < catogorymodel.size(); i++) {
+                            Categorymodel model = catogorymodel.get(i);
+                            String title = model.getCategory_name();
+                            String pid = model.getParent_category_id();
+                            String cid = model.getCategory_id();
+                            String url = model.getImage_path();
+                            //     viewmodellist.add(new CategoryViewmodel(title, pid, cid, url));
+                            db.addStoreDataToDataBase(new CategoryViewmodel(title, pid, cid, url));
+                            dataready.receivedCategoryViewModelData(db.getAllStoredData());
+                        }
+                    }
+                }
+            });
+        }
     }
 
+    public boolean isOnline(Context mContext) {
+        ConnectivityManager cm =
+                (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
 
     // This class used for do the backround process
-    class RestService extends AsyncTask<String, String, ArrayList> {
+    class RestService extends AsyncTask<String, String, ArrayList<Categorymodel>> {
         @Override
         protected ArrayList doInBackground(String... strings) {
 
@@ -92,9 +137,8 @@ public class CategoryController {
             Bitmap image;
 
             // caliing the function it return the datafetched from url as String format
-            String data = Utility.readDataFromServer(strings[0]);
+            String data = HttpManager.readDataFromServer(strings[0]);
             try {
-
                 // crearing the json object of url data
                 JSONObject jsonobject = new JSONObject(data);
                 // creating the subjson array in jsonobject
@@ -111,23 +155,14 @@ public class CategoryController {
                     //JSONArray contentJson = arrayobject.getJSONArray("image_path");
                     JSONObject urlobject = arrayobject.getJSONObject("image_path");
                     String url = urlobject.getString("50x50");
-                    image = Utility.imageDownload(url);
-                    mListofCategory.add(new Categorymodel(catogory_name,category_id,parent_category_id,parent_category_name,image));
+                    //  homeicon = HttpManager.imageDownload(url);
+                    mListofCategory.add(new Categorymodel(catogory_name, category_id, parent_category_id, parent_category_name, url));
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             return mListofCategory;
-
         }
     }
-
-
-
-
-
 }
-
-
